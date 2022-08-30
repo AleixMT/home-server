@@ -1,0 +1,33 @@
+version: '2'
+services:
+  dns:
+    image: lancachenet/lancache-dns:latest
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - ${DNS_BIND_IP}:53:53/udp
+      - ${DNS_BIND_IP}:53:53/tcp
+    volumes:
+      - /root/custom.db:/etc/bind/cache/custom.db
+## HTTPS requests are now handled in monolithic directly
+## you could choose to return to sniproxy if desired
+#
+#  sniproxy:
+#    image: lancachenet/sniproxy:latest
+#    env_file: .env
+#    restart: unless-stopped
+#    ports:
+#      - 443:443/tcp
+
+
+# Silencing monolithic to have nginx running in port 80... DNS cache will work as a custom DNS server but has to change to a truly custom DNS server like masqDNS
+#  monolithic:
+#    image: lancachenet/monolithic:latest
+#    env_file: .env
+#    restart: unless-stopped
+#    ports:
+#      - 8765:8765/tcp
+#      - 443:443/tcp
+#    volumes:
+#      - ${CACHE_ROOT}/cache:/data/cache
+#      - ${CACHE_ROOT}/logs:/data/logs

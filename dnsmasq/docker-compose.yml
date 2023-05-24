@@ -2,10 +2,16 @@ version: '2'
 services:
   dns:
     restart: always
-    image: strm/dnsmasq
+    image: jpillora/dnsmasq
     volumes:
-      - ./dnsmasq.conf:/etc/dnsmasq.conf
+      - /config/dnsmasq.conf:/etc/dnsmasq.conf
+      - /etc/hosts:/etc/hosts
     ports:
       - "53:53/udp"
+      - "5380:8080"
     cap_add:
       - NET_ADMIN
+    restart: unless-stopped
+    environment:
+      - "HTTP_USER=foo"
+      - "HTTP_PASS=bar"

@@ -15,9 +15,9 @@ services:
       - PEERPORT= #optional
       - HOST_WHITELIST= #optional
     volumes:
-      - /path/to/data:/config
-      - /path/to/downloads:/downloads
-      - /path/to/watch/folder:/watch
+      - /home/aleixmt/transmission/config:/config
+      - /srv/sambashare/BIG_BIG_DATA1/_Torrent-transmission:/downloads
+      - /srv/sambashare/BIG_BIG_DATA1/_Torrent_files-transmission:/watch
     ports:
       - 9091:9091
       - 51413:51413

@@ -1,0 +1,21 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1003
+      - PGID=1001
+      - TZ=Etc/UTC
+      - JELLYFIN_PublishedServerUrl=192.168.155.155 #optional
+    volumes:
+      - /home/aleixmt/jellyfin:/config
+      - /srv/sambashare/BIG_BIG_DATA1/disk/_Series:/data/tvshows
+      - /srv/sambashare/BIG_BIG_DATA1/disk/_Pelis:/data/movies
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+    restart: unless-stopped

@@ -5,12 +5,12 @@ services:
     container_name: sonarr
     environment:
       - PUID=1003
-      - PGID=1003
+      - PGID=1001
       - TZ=Europe/London
     volumes:
       - /home/aleixmt/sonarr:/config
-#      - /srv/sambashare/BIG_DATA/_Series~:/tv  # optional
-#      - /srv/sambashare/FAST_DATA/sonarr_downloads:/downloads  # optional
+      - /srv/sambashare/BIG_BIG_DATA1/:/tv  # optional
+      - /srv/sambashare/BIG_DATA/sonarr-downloads:/downloads  # optional
     ports:
       - 8989:8989
     restart: unless-stopped

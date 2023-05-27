@@ -1,0 +1,19 @@
+{
+version: "2.1"
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=132  # Sambashare user GID
+      - TZ=Europe/London
+    volumes:
+      - /home/aleixmt/Bazarr/config:/config
+      - /samba/media/disk/_Pelis:/movies  # Optional
+      - /samba/media/disk/_Anime:/tv  # Optional
+      - /samba/media/disk/_Series:/series  # Optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+}

@@ -9,10 +9,9 @@ services:
       - PGID=132  # Sambashare user GID
       - TZ=Europe/London
     volumes:
-      - /home/aleixmt/Bazarr/config:/config
-      - /samba/media/disk/_Pelis:/movies  # Optional
-      - /samba/media/disk/_Anime:/tv  # Optional
-      - /samba/media/disk/_Series:/series  # Optional
+      - /home/aleixmt/bazarr:/config
+      - /srv/sambashare/BIG_BIG_DATA1/disk/_Pelis:/movies  # Optional
+      - /srv/sambashare/BIG_BIG_DATA1/disk/:/tv  # Optional
     ports:
       - 6767:6767
     restart: unless-stopped
